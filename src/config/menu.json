@@ -1,0 +1,38 @@
+{
+  "main": [
+    {
+      "name": "Travel",
+      "url": "/categories/travel/"
+    },
+    {
+      "name": "Tech",
+      "url": "/categories/tech/"
+    },
+    {
+      "name": "Knowledge",
+      "url": "/categories/knowledge/"
+    },
+    {
+      "name": "Finance",
+      "url": "/categories/finance/"
+    }
+  ],
+  "footer": [
+    {
+      "name": "Terms of Use",
+      "url": "/legal/terms-of-use/"
+    },
+    {
+      "name": "Privacy Policy",
+      "url": "/legal/privacy-policy/"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact/"
+    },
+    {
+      "name": "About",
+      "url": "/about/"
+    }
+  ]
+}

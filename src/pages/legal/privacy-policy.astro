@@ -1,0 +1,19 @@
+---
+import Base from "@layouts/Base.astro";
+import { parseMarkdown } from "@lib/utils/textConverter";
+import { site } from "@lib/strapi";
+
+const content = site[0].privacyPolicy;
+---
+
+<Base>
+  <section class="section pb-0">
+    <div class="container">
+      <div class="md:col-10">
+        <div class="content mb-16 text-left">
+          <Fragment set:html={parseMarkdown(content)} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

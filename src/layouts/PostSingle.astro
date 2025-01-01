@@ -1,0 +1,109 @@
+---
+import Share from "@components/Share.astro";
+import config from "@config/config.json";
+import {
+  markdownify,
+  parseMarkdown,
+  removeSpecialChars,
+} from "@lib/utils/textConverter";
+import type { Post } from "../interfaces/post";
+
+const { post, isNative }: { post: Post; isNative: boolean } = Astro.props as {
+  post: Post;
+  isNative: boolean;
+};
+
+const { title, content, categories, slug } = post;
+const { summary_length } = config.settings;
+
+const {
+  imageUrl,
+  imageWidth,
+  imageHeight,
+  imageSmallUrl,
+  imageMediumUrl,
+  imageSmallWidth,
+  imageMediumWidth,
+} = post;
+
+// On this site we only want 1 category
+const category = categories?.[0];
+---
+
+<section class="section">
+  <div class="container">
+    <article class="row justify-center">
+      <div class="md:col-10 text-center">
+        <h1 set:html={markdownify(title)} class="h2 text-white" />
+      </div>
+
+      <div class="col-12 mt-8 mb-2">
+        {
+          imageUrl && (
+            <img
+              srcset={`
+                ${imageSmallUrl} ${imageSmallWidth}w,
+                ${imageMediumUrl} ${imageMediumWidth}w,
+                ${imageUrl} ${imageWidth}w
+              `}
+              sizes={`
+                (max-width: 540px) 480px,
+                (max-width: 768px) 660px,
+                (min-width: 1024px) ${imageWidth}px
+              `}
+              src={imageUrl || ""}
+              width={imageWidth}
+              height={imageHeight}
+              alt={title}
+              class="rounded-lg"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+            />
+          )
+        }
+      </div>
+
+      <div class="md:col-10">
+        <div class="content mb-16 text-left text-[#A1A6AE]">
+          <Fragment set:html={parseMarkdown(content)} />
+        </div>
+        <div class="flex flex-wrap items-center justify-between">
+          <div class="mr-4 mb-4 space-x-3">
+            <div class="bg-[#334154] text-[#D8DAE0] py-1/2 px-3">
+              {category && category.toLowerCase()}
+            </div>
+          </div>
+          <Share
+            className="social-share mb-4"
+            title={title}
+            description={removeSpecialChars(
+              content?.slice(0, Number(summary_length))
+            )}
+            slug={slug}
+            isNative={isNative}
+          />
+        </div>
+        <div class="mt-4">
+          <a href="/" class="flex text-lg">
+            <span class="text-primary self-end">
+              <svg
+                class="h-8 w-8"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </span>
+            Back to index
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

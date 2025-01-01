@@ -1,0 +1,42 @@
+---
+import menu from "@config/menu.json";
+import Base from "@layouts/Base.astro";
+import Posts from "@layouts/Posts.astro";
+import { nativePosts } from "@lib/strapi";
+
+export async function getStaticPaths() {
+  const categories = menu.main.map(item => {
+    return item.name.toLowerCase().replace(/ /g, "-");
+  });
+
+  return categories.map(category => {
+    return {
+      params: { category },
+    };
+  });
+}
+
+const { category } = Astro.params;
+
+const filterByCategory = nativePosts.filter(
+  post =>
+    post.categories &&
+    post.categories.some(
+      postCategory => postCategory.toLowerCase() === category.replace(/-/g, " ")
+    )
+);
+---
+
+<Base title={category || "Category"}>
+  <div class="section">
+    <div class="container">
+      <h1 class="h2 mb-4 text-center text-white capitalize">{category}</h1>
+      <p class="text-center mb-16 text-lg">
+        Showing all posts tagged as <span
+          class="text-white font-bold capitalize">{category}</span
+        >
+      </p>
+      <Posts posts={filterByCategory} fluid={false} />
+    </div>
+  </div>
+</Base>
