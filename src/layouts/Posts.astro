@@ -15,20 +15,20 @@ const { summary_length } = config.settings;
 ---
 
 <div
-  class={`col-12 flex flex-col ${className} ${
+  class={`grid grid-cols-3 gap-[20px]  ${className} ${
     posts.length == 1 ? "justify-center" : ""
   } `}
 >
   {
     posts.map((post: Post, i: number) => (
-      <div class="flex flex-col gap-4 mb-8 items-center md:flex-row">
+      <div class="flex flex-col gap-4 mb-8 items-center">
         {post.imageUrl && (
           <a
             href={`/${post.slug}/`}
-            class="sm:col-8 md:col-6 rounded-md block hover:text-primary overflow-hidden group"
+            class="w-full rounded-md block hover:text-primary overflow-hidden group"
           >
             <img
-              class="group-hover:scale-[1.03] h-[300px] object-cover transition duration-300 w-full"
+              class="group-hover:scale-[1.2] transition ease-in-out duration-[.6s] object-cover h-auto md:h-[270px]  transition duration-300 w-full"
               srcset={`
                 ${post.imageSmallUrl} ${post.imageSmallWidth}w,
                 ${post.imageMediumUrl} ${post.imageMediumWidth}w
@@ -47,28 +47,36 @@ const { summary_length } = config.settings;
             />
           </a>
         )}
-        <div class="sm:col-8 md:col-6 flex flex-col">
-          <h3 class="mb-4">
+        <div class="flex flex-col">
+          <span>
+            <a
+              href={`/${post.categories}/`}
+              class="block text-[#000] text-[14px] transition duration-300 border-l border-[#DB3334] leading-[14px] pl-[5px] text-[#DB3334]"
+            >
+              {post.categories}
+            </a>
+          </span>
+          <h3 class="mt-4">
             <a
               href={`/${post.slug}/`}
-              class="block text-white hover:text-primary transition duration-300"
+              class="block text-[#000] text-[18px] transition duration-300"
             >
               {post.title}
             </a>
           </h3>
-          <p class="text-text">
+          {/* <p class="text-text">
             {removeSpecialChars(post.content?.slice(0, Number(summary_length)))}
             ...
-          </p>
-          <div class="bg-[#334154] text-[#D8DAE0] opacity-80 py-1/2 px-3 w-fit mt-2 mb-3">
+          </p> */}
+          {/* <div class="bg-[#334154] text-[#D8DAE0] opacity-80 py-1/2 px-3 w-fit mt-2 mb-3">
             {post.category && post.category.toLowerCase()}
-          </div>
-          <a
+          </div> */}
+          {/* <a
             href={`/${post.slug}/`}
             class="block w-full transition duration-300 mx-auto mt-2 bg-primary hover:bg-primary/75 rounded-3xl p-2 text-center text-white text-2xl font-bold"
           >
             LEARN MORE
-          </a>
+          </a> */}
         </div>
       </div>
     ))

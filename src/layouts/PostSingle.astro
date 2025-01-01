@@ -7,6 +7,10 @@ import {
   removeSpecialChars,
 } from "@lib/utils/textConverter";
 import type { Post } from "../interfaces/post";
+import Sidebar from "./components/sideBar.astro"
+import Intrusted from "./components/youMightBe.astro"
+import FooterPost from "./components/footerPost.astro"
+
 
 const { post, isNative }: { post: Post; isNative: boolean } = Astro.props as {
   post: Post;
@@ -30,80 +34,112 @@ const {
 const category = categories?.[0];
 ---
 
-<section class="section">
+<section class="section pt-[10px]">
   <div class="container">
-    <article class="row justify-center">
-      <div class="md:col-10 text-center">
-        <h1 set:html={markdownify(title)} class="h2 text-white" />
-      </div>
-
-      <div class="col-12 mt-8 mb-2">
-        {
-          imageUrl && (
-            <img
-              srcset={`
-                ${imageSmallUrl} ${imageSmallWidth}w,
-                ${imageMediumUrl} ${imageMediumWidth}w,
-                ${imageUrl} ${imageWidth}w
-              `}
-              sizes={`
-                (max-width: 540px) 480px,
-                (max-width: 768px) 660px,
-                (min-width: 1024px) ${imageWidth}px
-              `}
-              src={imageUrl || ""}
-              width={imageWidth}
-              height={imageHeight}
-              alt={title}
-              class="rounded-lg"
-              fetchpriority="high"
-              loading="eager"
-              decoding="async"
-            />
-          )
-        }
-      </div>
-
-      <div class="md:col-10">
-        <div class="content mb-16 text-left text-[#A1A6AE]">
-          <Fragment set:html={parseMarkdown(content)} />
-        </div>
-        <div class="flex flex-wrap items-center justify-between">
-          <div class="mr-4 mb-4 space-x-3">
-            <div class="bg-[#334154] text-[#D8DAE0] py-1/2 px-3">
-              {category && category.toLowerCase()}
-            </div>
+    <div class="flex-col md:flex-row md:flex gap-[40px] h-auto">
+      <div class="basis-[calc(75%-20px)]">
+      <article class="row justify-start mx-0">
+        <div class="bg-[#EBF1F8] p-[20px] border-[1px] border-[#EBF1F8] w-full">
+          <div class="text-center">
+            <h1 set:html={markdownify(title)} class="md:text-[36px] text-[22px] text-[#000] text-start mb-[20px]" />
           </div>
-          <Share
-            className="social-share mb-4"
-            title={title}
-            description={removeSpecialChars(
-              content?.slice(0, Number(summary_length))
-            )}
-            slug={slug}
-            isNative={isNative}
-          />
+          <span class="bg-[#fff] text-[#5D738D] w-auto border-[#EBF1F8] border-[1px] py-[5px] px-[10px] text-[14px] capitalize">
+            {category && category.toLowerCase()}
+          </span>
         </div>
-        <div class="mt-4">
-          <a href="/" class="flex text-lg">
-            <span class="text-primary self-end">
-              <svg
-                class="h-8 w-8"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                  clip-rule="evenodd"></path>
-              </svg>
-            </span>
-            Back to index
-          </a>
+        <div class="col-12 mb-2 px-0">
+          {
+            imageUrl && (
+              <img
+                srcset={`
+                  ${imageSmallUrl} ${imageSmallWidth}w,
+                  ${imageMediumUrl} ${imageMediumWidth}w,
+                  ${imageUrl} ${imageWidth}w
+                `}
+                sizes={`
+                  (max-width: 540px) 480px,
+                  (max-width: 768px) 660px,
+                  (min-width: 1024px) ${imageWidth}px
+                `}
+                src={imageUrl || ""}
+                width={imageWidth}
+                height={imageHeight}
+                alt={title}
+                class="rounded-0"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
+              />
+            )
+          }
         </div>
-      </div>
-    </article>
+
+        <div class="w-full">
+          <div class="content mb-16 text-left text-[#A1A6AE]">
+            <Fragment set:html={parseMarkdown(content)} />
+          </div>
+          <!-- <div class="flex flex-wrap items-center justify-between">
+            <div class="mr-4 mb-4 space-x-3">
+              <div class="bg-[#334154] text-[#D8DAE0] py-1/2 px-3">
+                {category && category.toLowerCase()}
+              </div>
+            </div>
+            <Share
+              className="social-share mb-4"
+              title={title}
+              description={removeSpecialChars(
+                content?.slice(0, Number(summary_length))
+              )}
+              slug={slug}
+              isNative={isNative}
+            />
+          </div> -->
+          <div class="mt-4 border-t-[1px] pt-[40px] flex justify-between">
+            <a href="/" class="flex text-[14px] text-[#5D738D] items-center">
+              <span class="text-primary self-end">
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="#5D738D"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <span class="leading-[14px]">Previous</span>
+            </a>
+            <a href="/" class="flex text-[14px] text-[#5D738D] items-center">
+              <span class="leading-[14px]">Next</span>
+              <span class="text-primary self-end">
+                <svg
+                  class="h-5 w-5 rotate-180	"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="#5D738D"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <!-- sidebar -->
+    <div class="basis-[calc(25%-20px)] hidden md:block w-full h-auto">
+        <Sidebar />
+    </div>
+    </div>
   </div>
 </section>
+<!-- Intrusted -->
+<Intrusted post={post} />
+<FooterPost />
