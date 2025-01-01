@@ -1,20 +1,32 @@
 {
   "main": [
     {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "About us",
+      "url": "/about-us/"
+    },
+    {
       "name": "Travel",
       "url": "/categories/travel/"
     },
     {
-      "name": "Tech",
-      "url": "/categories/tech/"
+      "name": "Interesting",
+      "url": "/categories/interesting/"
     },
     {
-      "name": "Knowledge",
-      "url": "/categories/knowledge/"
+      "name": "Food and Health",
+      "url": "/categories/food-and-health/"
     },
     {
       "name": "Finance",
       "url": "/categories/finance/"
+    },
+    {
+      "name": "Entertainment",
+      "url": "/categories/entertainment/"
     }
   ],
   "footer": [
@@ -32,7 +44,7 @@
     },
     {
       "name": "About",
-      "url": "/about/"
+      "url": "/about-us/"
     }
   ]
 }

@@ -202,8 +202,12 @@ const { summary_length } = config.settings;
                 {post.title}
             </p>
             <div class="flex gap-[15px] mt-[6px]">
-              <span class="flex gap-[5px] text-[#fff] items-center text-[14px]"><AiFillFolderOpen /> people</span>
-              <span class="flex gap-[5px] text-[#fff] items-center text-[14px]">Travel</span>
+              <span class="flex gap-[5px] text-[#fff] items-center text-[14px]"><AiFillFolderOpen /></span>
+              <span class="flex gap-[5px] text-[#fff] items-center text-[14px]">
+                {
+                  post.categories?.map((ct)=>ct)
+                }
+              </span>
             </div>
           </div>
         </a>
