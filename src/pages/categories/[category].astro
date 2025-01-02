@@ -3,6 +3,7 @@ import menu from "@config/menu.json";
 import Base from "@layouts/Base.astro";
 import Posts from "@layouts/Posts.astro";
 import { nativePosts } from "@lib/strapi";
+import FooterPost from "@layouts/components/footerPost.astro";
 
 export async function getStaticPaths() {
   const categories = menu.main.map(item => {
@@ -27,7 +28,7 @@ const filterByCategory = nativePosts.filter(
 );
 ---
 
-<Base title={category || "Category"} showFooter={true}>
+<Base title={category || "Category"} showFooter={false}>
   <div class="section pt-[10px]">
     <div class="container">
       <div class="md:p-[32px] p-[16px] bg-[#F6F9FC] border-[1px] border-[#EBF1F8] mb-[32px]">
@@ -40,5 +41,5 @@ const filterByCategory = nativePosts.filter(
       <Posts posts={filterByCategory} fluid={false} />
     </div>
   </div>
-  <!-- <Intrusted post={post} /> -->
+  <FooterPost />
 </Base>

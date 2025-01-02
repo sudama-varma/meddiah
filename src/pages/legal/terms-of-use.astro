@@ -2,16 +2,32 @@
 import Base from "@layouts/Base.astro";
 import { parseMarkdown } from "@lib/utils/textConverter";
 import { site } from "@lib/strapi";
+import type { IEditor } from "@interf/site";
 
 const content = site[0].termsOfAgreement;
 ---
 
 <Base>
-  <section class="section pb-0">
+  <section class="section pb-0 pt-[10px]">
     <div class="container">
-      <div class="md:col-10">
-        <div class="content mb-16 text-left">
-          <Fragment set:html={parseMarkdown(content)} />
+      <div class="max-w-[760px] mx-auto condation-text">
+        <div class="mb-16 text-left text-[#000]">
+          <div class="w-full text-center bg-[#f6f9fc] p-[10px] border-[1px] border-[#EBF1F8] mb-[20px]">
+            <h1 class="md:text-[36px] text-[22px] text-[#000]">Terms of Service</h1>
+          </div>
+          <div class="w-full inline-block">
+        </div>
+        <div class="text-[#000] first-letter:text-7xl first-letter:text-slate-900 first-letter:mr-2 first-letter:float-left first-line:leading-[80px]">
+          {
+            content.map((item: IEditor) => (
+              <div>
+                {item.children.map((v, index:number) => (
+                  <Fragment key={index} set:html={parseMarkdown(v.text)} />
+                ))}
+              </div>
+            ))
+          }
+          </div>
         </div>
       </div>
     </div>

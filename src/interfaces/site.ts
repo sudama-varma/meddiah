@@ -1,9 +1,19 @@
+export interface IEditor{
+  type: string,
+  children: {
+    type:string,
+    text:string,
+    bold: boolean,
+    italic: boolean
+  }[]
+}
+
 export interface SiteData {
   id: number;
     name: string;
     slug: string;
-    termsOfAgreement: string;
-    privacyPolicy: string;
+    termsOfAgreement: IEditor[];
+    privacyPolicy: IEditor[];
     logo: {
       data: {
         attributes: {
@@ -24,8 +34,8 @@ export interface Site {
   id: number;
   name: string;
   slug: string;
-  termsOfAgreement: string;
-  privacyPolicy: string;
+  termsOfAgreement: IEditor[];
+  privacyPolicy: IEditor[];
   logoUrl: string;
   logoWidth: number;
   logoHeight: number;

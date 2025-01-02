@@ -2,18 +2,37 @@
 import Base from "@layouts/Base.astro";
 import { parseMarkdown } from "@lib/utils/textConverter";
 import { site } from "@lib/strapi";
+import type { IEditor } from "@interf/site";
 
 const content = site[0].privacyPolicy;
 ---
 
+
+
+
 <Base>
-  <section class="section pb-0">
+  <section class="section pb-0 pt-[10px]">
     <div class="container">
-      <div class="md:col-10">
-        <div class="content mb-16 text-left">
-          <Fragment set:html={parseMarkdown(content)} />
+      <div class="max-w-[760px] mx-auto condation-text">
+        <div class="mb-16 text-left text-[#000]">
+          <div class="w-full text-center bg-[#f6f9fc] p-[10px] border-[1px] border-[#EBF1F8] mb-[20px]">
+            <h1 class="md:text-[36px] text-[22px] text-[#000]">Privacy Policy</h1>
+          </div>
+        <div class="text-[#000] first-letter:text-7xl first-letter:text-slate-900 first-letter:mr-2 first-letter:float-left">
+          {
+            content.map((item: IEditor) => (
+              <div>
+                {item.children.map((v, index:number) => (
+                  <span class={v.bold +" "+v.italic} >{v.text}</span>
+                ))}
+              </div>
+            ))
+          }
+          </div>
         </div>
       </div>
     </div>
   </section>
 </Base>
+
+

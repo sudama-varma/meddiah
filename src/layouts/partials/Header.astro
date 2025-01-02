@@ -18,13 +18,13 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 ---
 
-<header class="header pb-6 pt-[30px]">
-  <nav class="navbar xl:container mx-auto md:px-0 px-[20px]">
+<header class="header pb-6 pt-[30px] max-w-[1100px] mx-auto">
+  <nav class="navbar xl:container mx-auto lg:px-0 px-[20px]">
     <!-- logo -->
     <div class="order-0">
       <Logo />
     </div>
-    <div class="w-auto flex items-center gap-[20px] md:pe-[60px]">
+    <div class="w-auto flex items-center lg:gap-[20px] lg:pe-[60px]">
     <!-- navbar toggler -->
     <input id="nav-toggle" type="checkbox" class="hidden" />
     <label
@@ -78,7 +78,7 @@ const { main }: { main: NavigationLink[] } = menu;
                 </li>
               ) : (
                 <li class="nav-item">
-                  <a href={menu.url} class="text-[16px] font-[500] text-left text-black block hover:text-[#DB3334] ease-in-out duration-[.5s]">
+                  <a href={menu.url} class="lg:text-[16px] md:text-[14px] font-[500] text-left text-black block hover:text-[#DB3334] ease-in-out duration-[.5s]">
                     {menu.name}
                   </a>
                 </li>

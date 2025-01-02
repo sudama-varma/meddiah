@@ -7,8 +7,7 @@ import social from "@config/social.json";
 import { markdownify } from "@lib/utils/textConverter";
 import { nativePosts } from "@lib/strapi";
 import Trending from "@layouts/components/Trending.astro";
-import { AiFillFacebook, AiFillTwitterCircle  } from "react-icons/ai";
-
+import { AiFillFacebook, AiFillTwitterCircle } from "react-icons/ai";
 
 const popularPosts = nativePosts.slice(1, 3);
 const trendingPosts = nativePosts.slice(6, 8);
@@ -16,42 +15,62 @@ const trendingPosts = nativePosts.slice(6, 8);
 
 <footer class="bg-[#000] md:pt-[90px] pt-[40px]">
   <div class="container">
-  <div class=" flex align-top gap-10 ">
-  <div class="md:basis-[33%] basis-[100%] text-left">
-    {/* footer menu */}
-    <FtrLogo  />
-    <!-- description -->
-    <p class="text-[#fff] text-[14px]">New sort of Meddiah. We post fun and short articles for your everyday entertainment. Got tips? Contact us by e-mail at info@giremaholdings.com or by sending mail to the address: 
-      Girema Holdings Limited, 
-      Karaiskaki 13, 
-      3032 Limassol, Cyprus</p>
-      {/* copyright */}
-      <p class="text-[#fff] text-[14px] my-[20px]" set:html={markdownify(config.params.copyright)}></p>
-      <!-- social icons -->
-      <div class="w-full flex items-center gap-[5px] mb-[20px]">
-        <span class="text-[#fff] text-[32px]"><a href="#"><AiFillFacebook /></a></span>
-        <span class="text-[#fff] text-[32px]"><a href="#"><AiFillTwitterCircle /></a></span>
+    <div class="flex md:flex-wrap lg:flex-nowrap align-top gap-10">
+      <div
+        class="lg:basis-[33%] md:basis-[calc(50%-20px)] basis-[100%] text-left"
+      >
+        {/* footer menu */}
+        <FtrLogo />
+        <!-- description -->
+        <p class="text-[#fff] text-[14px]">
+          New sort of Meddiah. We post fun and short articles for your everyday
+          entertainment. Got tips? Contact us by e-mail at
+          info@giremaholdings.com or by sending mail to the address: Girema
+          Holdings Limited, Karaiskaki 13, 3032 Limassol, Cyprus
+        </p>
+        {/* copyright */}
+        <p
+          class="text-[#fff] text-[14px] my-[20px]"
+          set:html={markdownify(config.params.copyright)}
+        />
+        <!-- social icons -->
+        <div class="w-full flex items-center gap-[5px] mb-[20px]">
+          <span class="text-[#fff] text-[32px]"
+            ><a href="#"><AiFillFacebook /></a></span
+          >
+          <span class="text-[#fff] text-[32px]"
+            ><a href="#"><AiFillTwitterCircle /></a></span
+          >
+        </div>
+        <ul class="mb-4 flex flex-wrap gap-[10px]">
+          {
+            menu.footer.map((menu) => (
+              <li class="block w-[calc(50%-5px)]">
+                <a
+                  href={menu.url}
+                  class="text-white hover:text-white transition-all"
+                >
+                  {menu.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        {/* social icons */}
+        <Social source={social} className="social-icons mb-8" />
       </div>
-    <ul class="mb-4 flex flex-wrap gap-[10px]">
-      {
-        menu.footer.map((menu) => (
-          <li class="block w-[calc(50%-5px)]">
-            <a
-              href={menu.url}
-              class="text-white hover:text-white transition-all"
-            >
-              {menu.name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    {/* social icons */}
-    <Social source={social} className="social-icons mb-8" />
-    
-  </div>
-    <Trending className="hidden md:flex md:basis-[33%] basis-[100%]" posts={popularPosts} title="Popular posts" type="footer" />
-    <Trending className="hidden md:flex md:basis-[33%] basis-[100%]" posts={trendingPosts} title="Trending posts" type="footer" />
-  </div>
+      <Trending
+        className="hidden md:flex lg:basis-[33%] md:basis-[calc(50%-20px)] basis-[100%]"
+        posts={popularPosts}
+        title="Popular posts"
+        type="footer"
+      />
+      <Trending
+        className="hidden md:flex lg:basis-[33%] md:basis-[calc(50%-20px)] basis-[100%]"
+        posts={trendingPosts}
+        title="Trending posts"
+        type="footer"
+      />
+    </div>
   </div>
 </footer>

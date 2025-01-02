@@ -15,7 +15,7 @@ const { summary_length } = config.settings;
 ---
 
 <div
-  class={`grid grid-cols-3 gap-[20px]  ${className} ${
+  class={`grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-[20px]  ${className} ${
     posts.length == 1 ? "justify-center" : ""
   } `}
 >
@@ -37,7 +37,7 @@ const { summary_length } = config.settings;
                 (max-width: 768px) 480px,
                 (min-width: 769px) 500px
               `}
-              src={post.imageMediumUrl || ""}
+              src={post.imageMediumUrl || "/images/placeholder.png"}
               width={post.imageMediumWidth}
               height={post.imageMediumHeight}
               alt={post.title}

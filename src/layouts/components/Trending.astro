@@ -66,7 +66,7 @@ const { summary_length } = config.settings;
                     src={
                       post.imageSmallUrl
                         ? post.imageSmallUrl
-                        : post.imageMediumUrl || ""
+                        : post.imageMediumUrl ||"/images/placeholder.png"
                     }
                     width={
                       post.imageSmallWidth
@@ -202,8 +202,8 @@ const { summary_length } = config.settings;
                 {post.title}
             </p>
             <div class="flex gap-[15px] mt-[6px]">
-              <span class="flex gap-[5px] text-[#fff] items-center text-[14px]"><AiFillFolderOpen /></span>
               <span class="flex gap-[5px] text-[#fff] items-center text-[14px]">
+                <AiFillFolderOpen />
                 {
                   post.categories?.map((ct)=>ct)
                 }
