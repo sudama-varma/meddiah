@@ -74,7 +74,7 @@ export default function SearchBar({ searchList }: Props) {
   return (
     <div className="min-h-[45vh]">
       <input
-        className="form-input w-full text-center"
+        className="form-input w-full text-left focus:border-[#DB3334]"
         placeholder="Type here to search"
         type="text"
         name="search"
@@ -101,7 +101,7 @@ export default function SearchBar({ searchList }: Props) {
             {item.imageUrl && (
               <a
                 href={`/${item.slug}/`}
-                className="rounded-lg block hover:text-primary overflow-hidden group"
+                className="rounded-lg block overflow-hidden group"
               >
                 <img
                   className="group-hover:scale-[1.03] transition duration-300 w-full"
@@ -113,10 +113,10 @@ export default function SearchBar({ searchList }: Props) {
               </a>
             )}
 
-            <h3 className="my-2">
+            <h3 className="my-2 text-[#000]">
               <a
                 href={`/${item.slug}/`}
-                className="block hover:text-primary transition duration-300"
+                className="block transition duration-300"
               >
                 {item.title}
               </a>

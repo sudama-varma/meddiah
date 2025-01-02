@@ -1,0 +1,76 @@
+---
+import { markdownify } from "@lib/utils/textConverter";
+import config from "@config/config.json";
+
+export async function PostFooter() {
+ 
+}
+
+---
+<footer class="w-full bg-[#fff] lg:pt-[90px] md:pt-[60px] pt-[40px] pb-[20px]">
+    <div class="container">
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-[40px]">
+            <div class="w-full">
+                <h4 class="text-[14px] text-[#000] uppercase tracking-wider	">About Meddiah</h4>
+                <img src='../../../public/uploads/ftr-pic.webp' alt="ftr pic" class="my-[20px] w-full" />
+                <strong class="text-[#5D738D] text-[14px]">Meddiah.com </strong>
+                <p class="my-[30px] text-[#5D738D] text-[14px]">New sort of Meddiah. We post fun and short articles for your everyday entertainment. Got tips? Contact us 🙂</p>
+                <p class="text-[#5D738D] text-[14px] my-[20px]" set:html={markdownify(config.params.copyright)}></p>
+            </div>
+            <div class="w-full">
+                <h4 class="text-[14px] text-[#000] uppercase tracking-wider	">Latest</h4>
+                <ol>
+                    <li class="py-[20px] border-b-[1px] border-[#EBF1F8]">
+                        <a class="text-[14px] text-[#5D738D] font-[600] flex items-center gap-[10px] hover:text-[#DB3334] ease-in-out duration-[.5s]" href="#">
+                            <i class="text-[#DB3334] text-[14px] font-bold">1. </i>
+                            <span>A Beginner’s Guide to Personal Finance: From Budgeting to Investing</span>
+                            <img src="../../../public/uploads/ftr-pic.webp" class="w-[60px]" />
+                        </a>
+                    </li>
+                    <li class="py-[20px] border-b-[1px] border-[#EBF1F8]">
+                        <a class="text-[14px] text-[#5D738D] font-[600] flex items-center gap-[10px] hover:text-[#DB3334] ease-in-out duration-[.5s]" href="#">
+                            <i class="text-[#DB3334] text-[14px] font-bold">2. </i>
+                            <span>A Beginner’s Guide to Personal Finance: From Budgeting to Investing</span>
+                            <img src="../../../public/uploads/ftr-pic.webp" class="w-[60px]" />
+                        </a>
+                    </li>
+                    <li class="py-[20px] border-b-[1px] border-[#EBF1F8]">
+                        <a class="text-[14px] text-[#5D738D] font-[600] flex items-center gap-[10px] hover:text-[#DB3334] ease-in-out duration-[.5s]" href="#">
+                            <i class="text-[#DB3334] text-[14px] font-bold">3. </i>
+                            <span>A Beginner’s Guide to Personal Finance: From Budgeting to Investing</span>
+                            <img src="../../../public/uploads/ftr-pic.webp" class="w-[60px]" />
+                        </a>
+                    </li>
+                </ol>
+            </div>
+            <div class="w-full">
+                <h4 class="text-[14px] text-[#000] uppercase tracking-wider	">Categories</h4>
+                <ul class="text-start py-[20px] flex flex-col gap-[5px]">
+                    <li>
+                        <a href="#" class="text-[14px] text-[#5D738D]">Animals</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-[14px] text-[#5D738D]">Art</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-[14px] text-[#5D738D]">Design</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-[14px] text-[#5D738D]">People</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-[14px] text-[#5D738D]">Travel</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="w-full pt-[10px] border-t-[1px] border-[#EBF1F8]">
+            <ul class="flex gap-[10px] flex-wrap">
+                <li><a class="text-[14px] text-[#5D738D]" href="#">Terms of Service</a></li>
+                <li><a class="text-[14px] text-[#5D738D]" href="#">DMCA Policy</a></li>
+                <li><a class="text-[14px] text-[#5D738D]" href="#">Privacy Policy</a></li>
+                <li><a class="text-[14px] text-[#5D738D]" href="#">Cookie Policy</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>

@@ -22,6 +22,7 @@ const { summary_length } = config.settings;
   meta_title={title}
   description={removeSpecialChars(content?.slice(0, Number(summary_length))) ||
     ""}
+    showFooter={false}
 >
-  <PostSingle post={post} isNative={true} />
+  <PostSingle post={post} isNative={true}  />
 </Base>
