@@ -4,7 +4,13 @@ export interface IEditor{
     type:string,
     text:string,
     bold: boolean,
-    italic: boolean
+    italic: boolean,
+    children: {
+      type:string,
+      text:string,
+      bold: boolean,
+      italic: boolean
+    }[]
   }[]
 }
 
@@ -14,6 +20,8 @@ export interface SiteData {
     slug: string;
     termsOfAgreement: IEditor[];
     privacyPolicy: IEditor[];
+    dmcapolicy: IEditor[];
+    cookiePolicy: IEditor[];
     logo: {
       data: {
         attributes: {
@@ -36,9 +44,11 @@ export interface Site {
   slug: string;
   termsOfAgreement: IEditor[];
   privacyPolicy: IEditor[];
-  logoUrl: string;
-  logoWidth: number;
-  logoHeight: number;
+  dmcapolicy: IEditor[];
+  cookiePolicy: IEditor[];
+  logoUrl?: string;
+  logoWidth?: number;
+  logoHeight?: number;
   logoSmallUrl?: string | null;
   logoSmallWidth?: number | null;
   logoSmallHeight?: number | null;

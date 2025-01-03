@@ -1,6 +1,7 @@
 import { fetchApi } from "@lib/api";
 import type { Post, PostData } from "../interfaces/post";
 import type { Site, SiteData } from "../interfaces/site";
+import type { CategriesData } from "@interf/category";
 
 const nativePostsData: PostData[] = await fetchApi<PostData[]>({
   endpoint: "posts",
@@ -21,7 +22,6 @@ const siteData: SiteData[] = await fetchApi<SiteData[]>({
   wrappedByKey: "data",
 });
 
-console.log(siteData[0].privacyPolicy[0].children[1])
 
 export const nativePosts: Post[] = nativePostsData.map((post) => {
   return {
@@ -54,13 +54,14 @@ export const nativePosts: Post[] = nativePostsData.map((post) => {
 });
 
 export const site: Site[] = siteData.map((site) => {
-  console.log(site)
   return {
     id: site.id,
     name: site.name,
     slug: site.slug,
     termsOfAgreement: site?.termsOfAgreement,
     privacyPolicy: site?.privacyPolicy,
+    dmcapolicy: site?.dmcapolicy,
+    cookiePolicy: site?.cookiePolicy,
     // logoUrl: site.attributes.logo.data.attributes.url,
     // logoWidth: site.attributes.logo.data.attributes.width,
     // logoHeight: site.attributes.logo.data.attributes.height,
@@ -73,4 +74,13 @@ export const site: Site[] = siteData.map((site) => {
     createdAt: site.createdAt,
     updatedAt: site.updatedAt,
   };
+});
+
+export const categories: CategriesData[] = await fetchApi<CategriesData[]>({
+  endpoint: "categories",
+  query: {
+    // "filters[name]": "Meddiah",
+    populate: "*",
+  },
+  wrappedByKey: "data",
 });
